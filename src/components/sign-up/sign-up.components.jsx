@@ -3,7 +3,7 @@ import {
   createAuthUserWithEmailAndPassword,
   createUserProfileDocument,
 } from "../../firebase/firebase.utils";
-import CustomButton from "../custom-button/custom_button.component";
+import Button from "../custom-button/custom_button.component";
 import FormInput from "../form-input/form-input.component";
 
 import "./sign-up.styles.scss";
@@ -50,7 +50,7 @@ const SignUp = () => {
 
   return (
     <div className="sign-up">
-      <h2>I don't have an account</h2>
+      <h2>Don't have an account?</h2>
       <span>Sign up with your email and password</span>
       <form onSubmit={handleSubmit}>
         <FormInput
@@ -86,7 +86,7 @@ const SignUp = () => {
           required
         />
 
-        <CustomButton type="submit"> Sign Up </CustomButton>
+        <Button type="submit"> Sign Up </Button>
       </form>
     </div>
   );
