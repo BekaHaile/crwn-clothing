@@ -23,10 +23,6 @@ const SignInForm = () => {
     setFormFields(defaultFormFields);
   };
 
-  const signInWithGoogle = async () => {
-    await signInWithGooglePopup();
-  };
-
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -83,7 +79,7 @@ const SignInForm = () => {
           <Button
             buttonType='google'
             type='button'
-            onClick={signInWithGoogle}
+            onClick={signInWithGooglePopup}
           >
             Sign In With Google
           </Button>
