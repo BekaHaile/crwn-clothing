@@ -3,6 +3,7 @@ import { render } from "react-dom";
 import { BrowserRouter } from "react-router-dom";
 
 import App from "./App";
+import { ProductsProvider } from "./contexts/products.context";
 import { UserProvider } from "./contexts/user.context";
 
 import "./index.scss";
@@ -13,7 +14,9 @@ render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>
-        <App />
+        <ProductsProvider>
+          <App />
+        </ProductsProvider>
       </UserProvider>
     </BrowserRouter>
   </React.StrictMode>,
