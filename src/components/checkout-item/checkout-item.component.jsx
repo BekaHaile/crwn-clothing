@@ -10,9 +10,9 @@ const CheckoutItem = ({ checkoutItem }) => {
 
   const { imageUrl, name, price, quantity } = checkoutItem;
 
-  const decreaseQuantity = () => decreaseItemQuantity(checkoutItem);
-  const increaseQuantity = () => addItemToCart(checkoutItem);
-  const removeCartItem = () => removeItem(checkoutItem);
+  const decreaseQuantityHandler = () => decreaseItemQuantity(checkoutItem);
+  const increaseQuantityHandler = () => addItemToCart(checkoutItem);
+  const removeCartItemHandler = () => removeItem(checkoutItem);
 
   return (
     <div className="checkout-item-container">
@@ -21,16 +21,16 @@ const CheckoutItem = ({ checkoutItem }) => {
       </div>
       <span className="name">{name}</span>
       <span className="quantity">
-        <span onClick={decreaseQuantity} className="arrow">
-          &#x3c;
-        </span>{" "}
-        <span className="quantity">{quantity}</span>
-        <span onClick={increaseQuantity} className="arrow">
-          &#x3e;
-        </span>
+        <div onClick={decreaseQuantityHandler} className="arrow">
+          &#10094;
+        </div>
+        <span className="value">{quantity}</span>
+        <div onClick={increaseQuantityHandler} className="arrow">
+          &#10095;
+        </div>
       </span>
       <span className="price">{price}</span>
-      <div onClick={removeCartItem} className="remove-button">
+      <div onClick={removeCartItemHandler} className="remove-button">
         &#10005;
       </div>
     </div>
