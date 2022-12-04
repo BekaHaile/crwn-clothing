@@ -7,7 +7,6 @@ import Button from "../button/button.component";
 import CartItem from "../cart-item/cart-item.component";
 
 import {
-  ButtonContainer,
   CartDropdownContainer,
   CartItems,
   EmptyMessage,
@@ -30,9 +29,7 @@ const CartDropdown = () => {
           <EmptyMessage>Your Cart is empty</EmptyMessage>
         )}
       </CartItems>
-      <ButtonContainer>
-        <Button onClick={goToCheckoutHandler}> GO TO CHECKOUT</Button>
-      </ButtonContainer>
+      <Button onClick={goToCheckoutHandler}> GO TO CHECKOUT</Button>
     </CartDropdownContainer>
   );
 };
