@@ -24,7 +24,7 @@ const Navigation = () => {
   const { currentUser } = useContext(UserContext);
   const { isCartOpen } = useContext(CartContext);
 
-  const isAppInstalled = useAppInstalledChecker("Instagram");
+  const isAppInstalled = useAppInstalledChecker("com.whatsapp");
 
   return (
     <Fragment>
