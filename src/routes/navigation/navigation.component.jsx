@@ -11,6 +11,8 @@ import { signOutUser } from "../../utils/firebase/firebase.utils";
 
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 
+import useAppInstalledChecker from "../../hooks/useAppInstalledChecker";
+
 import {
   LogoContainer,
   NavigationContainer,
@@ -22,6 +24,8 @@ const Navigation = () => {
   const { currentUser } = useContext(UserContext);
   const { isCartOpen } = useContext(CartContext);
 
+  const isAppInstalled = useAppInstalledChecker("com.pitpay.pitpay");
+
   return (
     <Fragment>
       <NavigationContainer>
@@ -29,7 +33,7 @@ const Navigation = () => {
           <CrwnLogo className="logo" />
         </LogoContainer>
         <NavLinks>
-          <NavLink to="/shop">SHOP</NavLink>
+          <NavLink to="/shop">isAppInstalled</NavLink>
 
           {currentUser ? (
             <NavLink as="span" onClick={signOutUser}>
