@@ -24,3 +24,5 @@ function useAppInstalledChecker(appName) {
 
   return isAppInstalled;
 }
+
+export default useAppInstalledChecker;
