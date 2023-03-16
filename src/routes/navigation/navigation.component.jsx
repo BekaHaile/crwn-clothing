@@ -24,7 +24,7 @@ const Navigation = () => {
   const { currentUser } = useContext(UserContext);
   const { isCartOpen } = useContext(CartContext);
 
-  const isAppInstalled = useAppInstalledChecker("com.pitpay.pitpay");
+  const isAppInstalled = useAppInstalledChecker("Instagram");
 
   return (
     <Fragment>
@@ -33,7 +33,9 @@ const Navigation = () => {
           <CrwnLogo className="logo" />
         </LogoContainer>
         <NavLinks>
-          <NavLink to="/shop">{isAppInstalled}</NavLink>
+          <NavLink to="/shop">
+            {isAppInstalled ? "Installed" : "Not installed"}
+          </NavLink>
 
           {currentUser ? (
             <NavLink as="span" onClick={signOutUser}>

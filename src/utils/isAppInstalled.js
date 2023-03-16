@@ -4,6 +4,7 @@ function useAppInstalledChecker(appName) {
   const [isAppInstalled, setIsAppInstalled] = useState(false);
 
   useEffect(() => {
+    console.log("Checking if app is installed");
     const checkAppInstalled = () => {
       const isInstalled =
         !!window.navigator.standalone ||
@@ -12,6 +13,7 @@ function useAppInstalledChecker(appName) {
     };
 
     if (appName) {
+      console.log("Checking for ", appName);
       window.addEventListener("appinstalled", checkAppInstalled);
       window.addEventListener("DOMContentLoaded", checkAppInstalled);
     }
@@ -22,6 +24,7 @@ function useAppInstalledChecker(appName) {
     };
   }, [appName]);
 
+  console.log("isAppInstalled", isAppInstalled);
   return isAppInstalled;
 }
 
