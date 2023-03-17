@@ -24,26 +24,30 @@ const Navigation = () => {
 
   function handleClick() {
     const deepLink = "tikethoss://events";
-    const downloadLink = "https://google.com";
+    const downloadLink = "https://www.typing.com/";
 
     try {
       window.location.href = deepLink;
     } catch (error) {
       console.log(error);
       // Handle the error here
-      setTimeout(() => {
-        // Check if the deep link was successfully opened
-        if (document.visibilityState === "visible") {
-          // The deep link was successfully opened
-          return;
-        } else {
-          // The deep link was not opened
-          // Open the download link instead
-          window.location.href = downloadLink;
-        }
-      }, 500);
+      window.location.href = downloadLink;
     }
   }
+
+  useEffect(() => {
+    function handleBeforeUnload() {
+      // The user is navigating away from the current page
+      // Handle the error here
+      window.location.href = downloadLink;
+    }
+
+    window.addEventListener("beforeunload", handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener("beforeunload", handleBeforeUnload);
+    };
+  }, []);
 
   return (
     <Fragment>
