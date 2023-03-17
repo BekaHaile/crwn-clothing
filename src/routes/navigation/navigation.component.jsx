@@ -24,7 +24,28 @@ const Navigation = () => {
   const { currentUser } = useContext(UserContext);
   const { isCartOpen } = useContext(CartContext);
 
-  const isAppInstalled = useAppInstalledChecker("com.whatsapp");
+  function handleClick() {
+    const deepLink = "tikethoss://events";
+    const downloadLink = "https://google.com";
+
+    try {
+      window.location.href = deepLink;
+    } catch (error) {
+      console.log(error);
+      // Handle the error here
+      setTimeout(() => {
+        // Check if the deep link was successfully opened
+        if (document.visibilityState === "visible") {
+          // The deep link was successfully opened
+          return;
+        } else {
+          // The deep link was not opened
+          // Open the download link instead
+          window.location.href = downloadLink;
+        }
+      }, 500);
+    }
+  }
 
   return (
     <Fragment>
@@ -33,9 +54,7 @@ const Navigation = () => {
           <CrwnLogo className="logo" />
         </LogoContainer>
         <NavLinks>
-          <NavLink to="/shop">
-            {isAppInstalled ? "Installed" : "Not installed"}
-          </NavLink>
+          <NavLink onClick={handleClick}>"Open App"</NavLink>
 
           {currentUser ? (
             <NavLink as="span" onClick={signOutUser}>
