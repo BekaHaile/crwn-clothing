@@ -11,8 +11,6 @@ import { signOutUser } from "../../utils/firebase/firebase.utils";
 
 import CartDropdown from "../../components/cart-dropdown/cart-dropdown.component";
 
-import useAppInstalledChecker from "../../utils/isAppInstalled";
-
 import {
   LogoContainer,
   NavigationContainer,
