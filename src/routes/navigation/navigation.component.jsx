@@ -22,33 +22,6 @@ const Navigation = () => {
   const { currentUser } = useContext(UserContext);
   const { isCartOpen } = useContext(CartContext);
 
-  function handleClick() {
-    const deepLink = "tikethoss://events";
-    const downloadLink = "https://www.typing.com/";
-
-    try {
-      window.location.href = deepLink;
-    } catch (error) {
-      console.log(error);
-      // Handle the error here
-      window.location.href = downloadLink;
-    }
-  }
-
-  useEffect(() => {
-    function handleBeforeUnload() {
-      // The user is navigating away from the current page
-      // Handle the error here
-      window.location.href = downloadLink;
-    }
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, []);
-
   return (
     <Fragment>
       <NavigationContainer>
@@ -56,7 +29,7 @@ const Navigation = () => {
           <CrwnLogo className="logo" />
         </LogoContainer>
         <NavLinks>
-          <NavLink onClick={handleClick}>"Open App"</NavLink>
+          <NavLink to="/shop">SHOP</NavLink>
 
           {currentUser ? (
             <NavLink as="span" onClick={signOutUser}>
