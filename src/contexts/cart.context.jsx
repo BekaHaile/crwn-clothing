@@ -50,21 +50,31 @@ export const CartContext = createContext({
   total: 0,
 });
 
+const CART_ACTION_TYPES = {
+  SET_CART_ITEMS: "SET_CART_ITEMS",
+  SET_IS_CART_OPEN: "SET_IS_CART_OPEN",
+};
+
 const INITIAL_STATE = {
-  isCartOpen: true,
+  isCartOpen: false,
   cartItems: [],
   cartCount: 0,
-  cartTotal: 0,
+  total: 0,
 };
 
 const cartReducer = (state, action) => {
   const { type, payload } = action;
 
   switch (type) {
-    case "SET_CART_ITEMS":
+    case CART_ACTION_TYPES.SET_CART_ITEMS:
       return {
         ...state,
         ...payload,
+      };
+    case CART_ACTION_TYPES.SET_IS_CART_OPEN:
+      return {
+        ...state,
+        isCartOpen: payload,
       };
     default:
       throw new Error(`Unhandled action type: ${type} in cartReducer`);
@@ -72,8 +82,10 @@ const cartReducer = (state, action) => {
 };
 
 export const CartProvider = ({ children }) => {
-  const [{ cartItems, cartCount, cartTotal, isCartOpen }, dispatch] =
-    useReducer(cartReducer, INITIAL_STATE);
+  const [{ cartItems, cartCount, total, isCartOpen }, dispatch] = useReducer(
+    cartReducer,
+    INITIAL_STATE
+  );
 
   const updateCartItemsReducer = (newCartItems) => {
     const newCartCount = newCartItems.reduce(
@@ -87,11 +99,11 @@ export const CartProvider = ({ children }) => {
     );
 
     dispatch({
-      type: "SET_CART_ITEMS",
+      type: CART_ACTION_TYPES.SET_CART_ITEMS,
       payload: {
         cartItems: newCartItems,
         cartCount: newCartCount,
-        cartTotal: newCartTotal,
+        total: newCartTotal,
       },
     });
   };
@@ -111,15 +123,22 @@ export const CartProvider = ({ children }) => {
     updateCartItemsReducer(newCartItems);
   };
 
+  const setIsCartOpen = (bool) => {
+    dispatch({
+      type: CART_ACTION_TYPES.SET_IS_CART_OPEN,
+      payload: bool,
+    });
+  };
+
   const value = {
     isCartOpen,
-    setIsCartOpen: () => {},
+    setIsCartOpen,
     cartItems,
     addItemToCart,
     cartCount,
     decreaseItemQuantity,
     removeItem,
-    cartTotal,
+    total,
   };
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
